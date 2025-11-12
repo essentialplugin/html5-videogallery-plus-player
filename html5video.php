@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name: Video gallery and Player
- * Plugin URI: https://www.essentialplugin.com/wordpress-plugin/video-gallery-player/
+ * Plugin URI: https://essentialplugin.com/wordpress-plugin/video-gallery-player/
  * Text Domain: html5-videogallery-plus-player
  * Domain Path: /languages/
  * Description: Easy to add and display your HTML5, YouTube, Vimeo vedio gallery with Magnific Popup to your website. Also work with Gutenberg shortcode block.
  * Author: Essential Plugin
- * Version: 2.8.5
- * Author URI: https://www.essentialplugin.com
+ * Version: 2.8.6
+ * Author URI: https://essentialplugin.com
  *
  * @package Video gallery and Player
  * @author Essential Plugin
@@ -17,26 +17,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if( ! defined( 'WP_HTML5VP_VERSION' ) ) {
-	define( 'WP_HTML5VP_VERSION', '2.8.5' ); // Version of plugin
+if ( ! defined( 'WP_HTML5VP_VERSION' ) ) {
+	define( 'WP_HTML5VP_VERSION', '2.8.6' ); // Version of plugin
 }
-if( ! defined( 'WP_HTML5VP_DIR' ) ) {
+if ( ! defined( 'WP_HTML5VP_DIR' ) ) {
 	define( 'WP_HTML5VP_DIR', dirname( __FILE__ ) ); // Plugin dir
 }
-if( ! defined( 'WP_HTML5VP_URL' ) ) {
+if ( ! defined( 'WP_HTML5VP_URL' ) ) {
 	define( 'WP_HTML5VP_URL', plugin_dir_url( __FILE__ ) ); // Plugin url
 }
-if( ! defined( 'WP_HTML5VP_POST_TYPE' ) ) {
+if ( ! defined( 'WP_HTML5VP_POST_TYPE' ) ) {
 	define( 'WP_HTML5VP_POST_TYPE', 'sp_html5video' ); // Plugin post type name
 }
-if( ! defined( 'WP_HTML5VP_PLUGIN_LINK_UNLOCK' ) ) {
-	define('WP_HTML5VP_PLUGIN_LINK_UNLOCK', 'https://www.essentialplugin.com/pricing/?utm_source=WP&utm_medium=video-gallery&utm_campaign=Features-PRO'); // Plugin link
+if ( ! defined( 'WP_HTML5VP_PLUGIN_LINK_UNLOCK' ) ) {
+	define('WP_HTML5VP_PLUGIN_LINK_UNLOCK', 'https://essentialplugin.com/pricing/?utm_source=WP&utm_medium=video-gallery&utm_campaign=Features-PRO'); // Plugin link
 }
-if( ! defined( 'WP_HTML5VP_PLUGIN_LINK_UPGRADE' ) ) {
-	define('WP_HTML5VP_PLUGIN_LINK_UPGRADE', 'https://www.essentialplugin.com/pricing/?utm_source=WP&utm_medium=video-gallery&utm_campaign=Upgrade-PRO'); // Plugin link
+if ( ! defined( 'WP_HTML5VP_PLUGIN_LINK_UPGRADE' ) ) {
+	define('WP_HTML5VP_PLUGIN_LINK_UPGRADE', 'https://essentialplugin.com/pricing/?utm_source=WP&utm_medium=video-gallery&utm_campaign=Upgrade-PRO'); // Plugin link
 }
-if( ! defined( 'WP_HTML5VP_SITE_LINK' ) ) {
-	define('WP_HTML5VP_SITE_LINK','https://www.essentialplugin.com'); // Plugin link
+if ( ! defined( 'WP_HTML5VP_SITE_LINK' ) ) {
+	define('WP_HTML5VP_SITE_LINK','https://essentialplugin.com'); // Plugin link
 }
 
 /**
@@ -107,7 +107,7 @@ function sp_html5video_rewrite_flush() {
 	flush_rewrite_rules();
 
 	// Deactivate pro version
-	if( is_plugin_active('videogallery-plus-player-pro/video-gallery.php') ) {
+	if ( is_plugin_active('videogallery-plus-player-pro/video-gallery.php') ) {
 		add_action('update_option_active_plugins', 'wp_html5vp_deactivate_pro_version');
 	}
 }
@@ -143,14 +143,14 @@ function wp_html5vp_admin_notice() {
 	global $pagenow;
 
 	// If not plugin screen
-	if( 'plugins.php' != $pagenow ) {
+	if ( 'plugins.php' != $pagenow ) {
 		return;
 	}
 
 	// Check Lite Version
 	$dir = ABSPATH . 'wp-content/plugins/videogallery-plus-player-pro/video-gallery.php';
 
-	if( ! file_exists( $dir ) ) {
+	if ( ! file_exists( $dir ) ) {
 		return;
 	}
 
@@ -158,7 +158,7 @@ function wp_html5vp_admin_notice() {
 	$notice_transient	= get_transient( 'wp_html5vp_install_notice' );
 
 	// If free plugin exist
-	if( $notice_transient == false && current_user_can( 'install_plugins' ) ) {
+	if ( $notice_transient == false && current_user_can( 'install_plugins' ) ) {
 		echo '<div class="updated notice" style="position:relative;">
 				<p>
 				<strong>'.sprintf( __('Thank you for activating %s', 'html5-videogallery-plus-player'), 'Video gallery and Player').'</strong>.<br/> '.sprintf( __('It looks like you had PRO version %s of this plugin activated. To avoid conflicts the extra version has been deactivated and we recommend you delete it.', 'html5-videogallery-plus-player'), '<strong>(<em>Video gallery and Player PRO</em>)</strong>' ).'
